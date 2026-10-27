@@ -1,0 +1,92 @@
+<!doctype html><html lang="uk"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3V1SYXVYF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z3V1SYXVYF');
+</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DuckPDR — тренажер ПДР України</title><script>(function(){try{if(localStorage.getItem("duckpdr-theme")==="dark")document.documentElement.classList.add("theme-dark")}catch(_){}})();</script><link rel="stylesheet" href="/style.css?v=20261027-achievements-v2"><meta name="theme-color" content="#f2c94c">  </head><body><header><div class="header-left-group"><div class="brand"><span class="duck-mark" aria-hidden="true"><svg viewBox="0 0 64 64" role="img"><path d="M12 39c0-10 7-18 17-20 2-7 8-11 15-11 6 0 11 3 14 8 1 2 2 4 2 7 0 7-5 13-12 15-4 7-11 11-20 11-9 0-16-4-16-10z" fill="currentColor"/><circle cx="43" cy="22" r="2.6" fill="#fff"/><path d="M53 26c5 0 8 2 10 5-3 1-6 2-10 2" fill="#D58A48"/></svg></span><span class="brand-name">Duck<span>PDR</span></span></div><div class="player-status" id="playerStatus" aria-label="Рівень та досвід гравця">
+  <div class="player-avatar"><img src="/images/mascot-home.webp" alt="Маскот DuckPDR" loading="lazy"></div>
+  <div class="player-status-copy"><div class="player-level-label">Рівень <b id="playerLevelNumber">1</b></div><div class="player-xp-track"><i id="playerXpBar" style="width:0%"></i></div><small id="playerXpText">0 / 100 XP</small></div>
+</div></div><div class="header-right"><button id="achievementsBtn" class="achievements-nav-btn" type="button" aria-label="Відкрити кімнату нагород" title="Кімната нагород"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"/><path d="M8 6H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v4m-4 3h8m-7-3h6"/></svg><span>Нагороди</span></button><span id="timer" class="timer hidden"></span><div class="top-tabs"><button id="testsTab" class="tab-btn active">Тести по білетам</button><button id="topicsTab" class="tab-btn">Тести за темами</button><button id="examTab" class="tab-btn">Іспит</button></div><button id="homeBtn" class="btn light hidden">← Назад</button></div></header><main><section id="home"><div class="hero"><div class="hero-copy"><div class="eyebrow">Підготовка до теоретичного іспиту</div><h1>DuckPDR — <span>2332 питання ПДР</span><br>у форматі зручних тестів</h1><p>Тренуйся у своєму темпі, проходь тести по 20 питань і одразу перевіряй відповіді.</p><div class="hero-badges"><span>🦆 117 тестів</span><span>⏱ 20 хвилин</span><span>✓ Миттєва перевірка</span></div></div><div class="duck-illustration" aria-hidden="true"><img src="/images/mascot-home.webp" data-home-mascot="tickets" alt="Маскот DuckPDR"></div></div><div class="stats"><div><b id="qCount"></b><span>питань</span></div><div><b id="testCount"></b><span>тестів</span></div><div><b>20</b><span>питань у тесті</span></div></div><div id="ticketsView">
+<div class="tickets-mode-intro mode-intro">
+  <div class="tickets-mode-art" aria-hidden="true">🦆</div>
+  <div class="mode-intro-copy">
+    <div class="eyebrow">РЕЖИМ ТРЕНУВАННЯ</div>
+    <h2>Обирай білет — і рушай!</h2>
+    <p>Кожен білет — 20 питань. Відповідай у своєму темпі, повертайся до номерів і збирай впевненість перед іспитом.</p>
+  </div>
+  <div class="ticket-stamp" aria-hidden="true"><b>20</b><span>питань</span><i>✓</i></div>
+</div>
+<div class="toolbar"><input id="search" placeholder="Пошук тесту…"><button id="allBtn" class="btn light">Усі тести</button></div><div id="tests" class="grid"></div><div class="notice"><b>Як працює перевірка:</b> після вибору відповіді вона одразу фіксується. Правильний варіант підсвічується <b>зеленим</b>, а помилково вибраний — м’яким бурштиновим кольором. Правильна відповідь автоматично відкриває наступне питання, а після помилки ти залишаєшся на поточному. У тесті 20 хвилин.</div></div><div id="topicsView" class="hidden"><div class="topics-intro">
+  <div class="topics-intro-copy"><div class="eyebrow">МАРШРУТ ДО ВПЕВНЕНОСТІ</div><h2>Навчайся за темами</h2><p>Зосередься на тому, що хочеш підтягнути: обирай розділ і проходь короткі блоки питань. Кожна тема — новий крок до мети.</p>
+  <div class="topic-pills"><span>🚦 Дорожні знаки</span><span>↔️ Маневрування</span><span>🛟 Безпека</span></div></div>
+  <div class="topics-intro-art" aria-hidden="true"><span class="topics-sun">☀</span><span class="topics-road">↗</span></div>
+</div><div id="topics" class="topics-list"></div></div>
+</section><section id="quiz" class="hidden"><div class="quiztop"><div><div class="eyebrow" id="quizTitle"></div><h2 id="counter"></h2></div><div class="pill">Час: <b id="timer2"></b></div></div><div class="bar"><i id="bar"></i></div><section id="questionNavWrap" class="question-navigator" aria-label="Навігація по питаннях"><div class="question-nav-head"><span class="question-nav-label">ПИТАННЯ</span><span id="questionNavCount" class="question-nav-count">20 питань</span></div><div id="questionNav" class="question-nav" role="navigation" aria-label="Перейти до питання"></div><div class="question-nav-legend"><span><i class="legend-dot current-dot"></i>Поточне</span><span><i class="legend-dot correct-dot"></i>Правильно</span><span><i class="legend-dot wrong-dot"></i>Помилка</span></div></section><article class="card quizcard"><div class="num" id="num"></div><h2 class="qtext" id="qtext"></h2><div id="questionImages"></div><div id="answers" class="answers"></div><div id="feedback" class="hidden"></div></article><div class="nav"><button id="prev" class="btn light">← Назад</button><button id="next" class="btn primary">Далі →</button></div></section><section id="result" class="hidden"><div class="result card"><div id="resultSpecial" class="result-special hidden"><img id="resultSpecialImage" src="" alt=""><h2 id="resultSpecialMessage"></h2></div><div class="eyebrow">Тест завершено</div><h1 id="resultTitle"></h1><div class="big" id="resultScore">—</div><div id="xpAward" class="xp-award hidden" aria-live="polite"></div><p id="resultText"></p><div id="mistakes" class="mistakes"></div><button id="again" class="btn primary">Пройти ще раз</button> <button id="reviewMistakes" class="btn light hidden">Робота над помилками</button> <button id="back" class="btn light">До тестів</button></div></section><section id="achievementsRoom" class="hidden" aria-labelledby="achievementsRoomTitle">
+  <div class="achievements-room-hero">
+    <div class="achievements-room-shade"></div>
+    <div class="achievements-room-copy">
+      <div class="eyebrow">ТВОЇ ДОСЯГНЕННЯ</div>
+      <h1 id="achievementsRoomTitle">Кімната нагород</h1>
+      <p>Кожна нагорода — це крок до впевненості на дорозі. Тренуйся, відкривай значки та поповнюй свою колекцію.</p>
+      <div class="achievement-count-pill" id="achievementCount">0 із 16 нагород відкрито</div>
+    </div>
+  </div>
+  <section class="room-player-progress" aria-label="Прогрес рівня">
+    <div class="room-level-avatar"><img src="/images/mascot-home.webp" alt="Маскот DuckPDR" loading="lazy"></div>
+    <div class="room-level-main"><div class="room-level-heading"><strong>Рівень <span id="roomLevelNumber">1</span></strong><span id="roomXpText">0 із 100 XP до рівня 2</span></div><div class="room-xp-track"><i id="roomXpBar" style="width:0%"></i></div></div>
+  </section>
+  <div class="achievements-intro"><div><h2>Колекція нагород</h2><p>Натисни на закритий силует, щоб дізнатися назву та умови досягнення. Таємні нагороди зберігають свої секрети до відкриття.</p></div><span class="achievement-total-icon" aria-hidden="true">🏆</span></div>
+  <div id="achievementsGrid" class="achievements-grid" aria-label="Список досягнень"></div>
+</section>
+<div id="examModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="examModalTitle">
+    <button id="examSettingsToggle" class="exam-settings-toggle" type="button" aria-label="Налаштування іспиту" title="Налаштування іспиту" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.1a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8Z"/><path d="m19.4 13.5 1.1.8-1.5 2.6-1.3-.5a7.7 7.7 0 0 1-1.5.9l-.2 1.4h-3l-.2-1.4a7.7 7.7 0 0 1-1.5-.9l-1.3.5-1.5-2.6 1.1-.8a7.4 7.4 0 0 1 0-1.8l-1.1-.8 1.5-2.6 1.3.5a7.7 7.7 0 0 1 1.5-.9l.2-1.4h3l.2 1.4a7.7 7.7 0 0 1 1.5.9l1.3-.5 1.5 2.6-1.1.8a7.4 7.4 0 0 1 0 1.8Z" transform="translate(-1 -1) scale(1.04)"/></svg></button>
+    <div class="exam-modal-art"><img src="/images/duck-exam-modal.webp" alt="Ілюстрація DuckPDR для режиму іспиту"></div>
+    <div class="exam-modal-copy">
+      <div class="eyebrow">Режим реального іспиту</div>
+      <h2 id="examModalTitle">Зараз розпочнеться тестування</h2>
+      <p id="examDetails">Зараз розпочнеться тестування у форматі реального іспиту: 20 випадкових питань, 20 хвилин на їх вирішення. Допускається не більше 2 неправильних відповідей. Після перевищення дозволеної кількості помилок тест буде автоматично завершено.</p>
+      <section id="examSettingsPanel" class="exam-settings-panel hidden" aria-label="Налаштування іспиту">
+        <h3>Налаштуй іспит</h3>
+        <div class="exam-settings-grid">
+          <label for="examQuestionCount">Кількість питань<input id="examQuestionCount" type="number" min="1" max="2332" step="1" value="20" inputmode="numeric"></label>
+          <label for="examTimeMinutes">Час, хвилин<input id="examTimeMinutes" type="number" min="1" max="180" step="1" value="20" inputmode="numeric"></label>
+          <label for="examAllowedErrors">Допустимі помилки<input id="examAllowedErrors" type="number" min="0" max="20" step="1" value="2" inputmode="numeric"></label>
+        </div>
+        <p id="examSettingsError" class="exam-settings-error hidden" role="alert"></p>
+        <div class="exam-settings-actions"><button id="examSettingsReset" class="btn light" type="button">За замовчуванням</button><button id="examSettingsApply" class="btn primary" type="button">Застосувати</button></div>
+      </section>
+    </div>
+    <div class="modal-actions"><button id="examCancel" class="btn light">Скасувати</button><button id="examStart" class="btn primary">Почати іспит</button></div>
+  </div>
+</div>
+<div id="achievementDetailModal" class="achievement-modal hidden" aria-hidden="true">
+  <div class="achievement-modal-backdrop"></div>
+  <div class="achievement-dialog" role="dialog" aria-modal="true" aria-labelledby="achievementDetailTitle">
+    <button id="achievementDetailClose" class="achievement-dialog-close" type="button" aria-label="Закрити">×</button>
+    <img id="achievementDetailImage" class="achievement-detail-image is-locked" src="" alt="">
+    <h2 id="achievementDetailTitle"></h2>
+    <p id="achievementDetailDescription"></p>
+    <div id="achievementDetailStatus" class="achievement-detail-status"></div>
+  </div>
+</div>
+<div id="achievementRewardModal" class="achievement-modal achievement-reward-modal hidden" aria-hidden="true">
+  <div class="achievement-modal-backdrop"></div>
+  <div class="achievement-dialog achievement-reward-dialog" role="dialog" aria-modal="true" aria-labelledby="achievementRewardTitle">
+    <div class="reward-confetti" aria-hidden="true">✦ ✧ ✦</div>
+    <div class="eyebrow">НОВЕ ДОСЯГНЕННЯ</div>
+    <h2>Вітаю, ти отримав нагороду!</h2>
+    <img id="achievementRewardImage" class="achievement-detail-image" src="" alt="">
+    <h3 id="achievementRewardTitle"></h3>
+    <p id="achievementRewardDescription"></p>
+    <div id="achievementRewardCount" class="achievement-detail-status"></div>
+    <button id="achievementRewardNext" class="btn primary" type="button">До результату</button>
+  </div>
+</div>
+</main><button id="themeToggle" class="theme-toggle" type="button" aria-label="Увімкнути темну тему" title="Темна тема" aria-pressed="false"><svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.8 8.8 0 0 1 8.8 3.6 8.9 8.9 0 1 0 20.4 15.2Z"/></svg></button><div id="loadError" class="hidden" role="alert" aria-live="polite" style="max-width:900px;margin:20px auto;padding:16px;border-radius:14px;background:#fff0f0;border:1px solid #e7b2b2;color:#8f2f2f;font-weight:700;text-align:center"></div><script src="/data.js?v=20261027-achievements-v2" defer></script><script src="/app.js?v=20261027-achievements-v2" defer></script></body></html>
