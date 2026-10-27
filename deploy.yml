@@ -1,0 +1,57 @@
+Название : Создание и развертывание DuckPDR на GitHub Pages
+на :
+  толкать :
+    ветки : [главная]
+  workflow_dispatch :
+
+разрешения :
+  Содержание : читать
+  страницы : написать
+  id-token : write
+
+параллелизм :
+  группа : страницы
+  cancel-in-progress : true
+
+вакансии :
+  сборка и развертывание :
+    runs-on : ubuntu-latest
+    среда :
+      имя : github-pages
+      url : ${{ steps.deployment.outputs.page_url }}
+    шаги :
+      - имя : Проверить репозиторий
+        использует : actions/checkout@v4
+
+      - name : Настройка Node.js
+        использует : actions/setup-node@v4
+        с :
+          node-version : 20
+
+      - name : Настройка GitHub Pages
+        использует : actions/configure-pages@v5
+
+      - имя : Генерировать статические страницы
+        выполнить : node build.js
+
+      - имя : Проверить сгенерированный сайт
+        оболочка : bash
+        выполнить : |
+          set -euo pipefail
+          test -f _site/index.html
+          test -f _site/bilet/1/index.html
+          test -f _site/tema/33/index.html
+          test -f _site/sitemap.xml
+          test -f _site/robots.txt
+          test -f _site/CNAME
+          test -f _site/googlebd5bc69959f476cd.html
+          test -d _site/images
+          echo "Сгенерированный сайт проверен."
+      - имя : Артефакт «Загрузка страниц»
+        использует : actions/upload-pages-artifact@v4
+        с :
+          путь : _сайт
+
+      - name : Развернуть на GitHub Pages
+        id : deployment
+        использует : actions/deploy-pages@
