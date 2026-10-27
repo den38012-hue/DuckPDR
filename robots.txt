@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://duckpdr.pp.ua/sitemap.xml
