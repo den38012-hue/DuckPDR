@@ -921,7 +921,12 @@
     state.mode = 'exam';
     state.testNo = 0;
     state.examWrong = 0;
-    state.questions = shuffleCopy(QUESTIONS).slice(0, state.examSettings.questionCount);
+    const examQuestions = QUESTIONS.filter((question) => {
+  const section = Number(question.section);
+  return section < 48 || section > 64;
+});
+
+state.questions = shuffleCopy(examQuestions).slice(0, state.examSettings.questionCount);
     beginQuiz();
   }
 
